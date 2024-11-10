@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Book</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+
+    .bckgrnd {     
+      background: url('../public/recipe3.jpg') no-repeat;
+      background-size: cover;           
+    }
+    /*body {
+      background-color: #f8f9fa;
+    }*/
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background-color: #bd2130;
+      border-color: #bd2130;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+      border-color: #218838;
+    }
+  </style>
+</head>
+
+<body class="bckgrnd">
+  <div class="container">
+    <div class="row">
+      <div class="cxol-md-12">
+        <h2 class="mb-4">Recipe Book</h2>
+        
+        <p>Welcome, <%= user %>! Here are your recipes:</p>
+        <a href="/logout" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+        <!-- Add a table to display recipes -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Recipe Name</th>
+              <th scope="col">Ingredients</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < recipes.length; i++) { %>
+              <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= recipes[i].recipe_name %></td>
+                <td><%= recipes[i].ingredients %></td>
+                <td>
+                  <!-- Add buttons for actions (Edit, Delete) -->
+                  <a href="/recipes/edit/<%= recipes[i].id %>" class="btn btn-primary btn-sm">Edit</a>
+                  <a href="/recipes/delete/<%= recipes[i].id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this recipe?')">Delete</a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+
+        <!-- Add a button to navigate to the recipe creation page -->
+        <a href="/recipes/new" class="btn btn-success">Add New Recipe</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

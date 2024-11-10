@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: rgb(15, 15, 15);
+        }
+        tr {
+            color: rgb(188, 119, 46);
+        }
+        th {
+            color: rgb(130, 52, 127);
+        
+        }
+        header {
+            background-color: rgb(55, 31, 76);
+            color: white;
+            padding: 10px;
+            text-align: right;
+        }
+
+        #logoutButton {
+            margin-right: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/logout" id="logoutButton" >
+            <span class="glyphicon glyphicon-log-out"></span> <i class='bx bx-exit'>Logout</i>
+          </a>
+    </header>
+    <h1>Admin Panel</h1>
+    <% if (users.length > 0) { %>
+        <div class="table table-striped dash">
+            <table style="width:70%">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.username %></td>
+                            <td>
+                                <form action="/delete-user/<%= user.id %>" method="post">
+                                    <button type="submit" style="background-color: red; color: white;">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+   
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
